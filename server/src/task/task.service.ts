@@ -19,4 +19,10 @@ export class TaskService {
   async deleteTask(taskId: string): Promise<Task> {
     return await this.taskModel.findByIdAndRemove(taskId).exec();
   }
+
+  async updateTaskStatus(taskId: string, status: string): Promise<Task> {
+    return await this.taskModel
+      .findByIdAndUpdate(taskId, { status: status }, { new: true })
+      .exec();
+  }
 }
